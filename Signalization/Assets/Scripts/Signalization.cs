@@ -27,6 +27,16 @@ public class Signalization : MonoBehaviour
         _sound.volume = 0;
     }
 
+    private void OnDestroy()
+    {
+        StopCoroutines();
+    }
+
+    private void OnDisable()
+    {
+        StopCoroutines();
+    }
+
     public void ChangeAlarmState(bool isThiefDiscovered)
     {
         _isThiefDiscovered = isThiefDiscovered;
@@ -64,5 +74,10 @@ public class Signalization : MonoBehaviour
         }
 
         _isVolumeChanging = false;
+    }
+
+    private void StopCoroutines()
+    {
+        StopCoroutine(Alarm());
     }
 }
